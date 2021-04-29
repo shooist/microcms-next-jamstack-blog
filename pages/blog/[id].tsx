@@ -1,5 +1,6 @@
 import Layout from "../../components/layout";
 import Date from "../../components/date";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 export default function BlogId({ blog }) {
   return (
@@ -39,7 +40,7 @@ export default function BlogId({ blog }) {
   );
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const key = {
     headers: { "X-API-KEY": process.env.API_KEY },
   };
@@ -50,7 +51,7 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params.id;
   const key = {
     headers: { "X-API-KEY": process.env.API_KEY },
